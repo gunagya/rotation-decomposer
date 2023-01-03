@@ -80,7 +80,6 @@ extra-source-files:  images/*.png ChangeLog
 library
   -- Modules exported by the library.
   exposed-modules:     Quantum.Synthesis.Newsynth, Quantum.Synthesis.Matrix, Quantum.Synthesis.LaTeX, Quantum.Synthesis.RotationDecomposition, Quantum.Synthesis.ArcTan2, Quantum.Synthesis.EulerAngles, Quantum.Synthesis.EuclideanDomain, Quantum.Synthesis.SymReal, Quantum.Synthesis.Ring, Quantum.Synthesis.Clifford, Quantum.Synthesis.MultiQubitSynthesis, Quantum.Synthesis.CliffordT, Quantum.Synthesis.Ring.FixedPrec, Quantum.Synthesis.Ring.SymReal, Quantum.Synthesis.GridProblems Quantum.Synthesis.GridSynth Quantum.Synthesis.Diophantine Quantum.Synthesis.StepComp Quantum.Synthesis.ToReal Quantum.Synthesis.QuadraticEquation
-  
   -- Modules included in this library but not exported.
   -- other-modules:       
   
@@ -92,6 +91,15 @@ library
   ghc-prof-options:
 
   ghc-options:
+
+foreign-library gridsynth_ccals 
+  type:                native-shared
+  other-modules:       LsqeccGlue.ExportCCalls
+  build-depends:       base >= 4.5 && < 5, random >= 1.0, fixedprec >= 0.2.2, containers >= 0.5, rts == 1.0.2, newsynth
+  ghc-options: -g2 -no-hs-main -fPIC -shared -dynamic -lHSrts-1.0.2_debug-ghc9.4.4
+  -- see this link to not have to hard-code the ghc version
+
+
   
 executable gridsynth
   -- .hs or .lhs file containing the Main module.

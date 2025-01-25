@@ -26,4 +26,3 @@ buildtest-with-ghc:
 
 runtest: test
 	LD_LIBRARY_PATH=`pwd`:`ghc --print-libdir`/aarch64-osx-ghc-$(GHC_VERSION)/ ./test
-
